@@ -10,12 +10,14 @@ underBody.parentNode.insertBefore(styleElement, underBody.nextSibling);
 // Get the random hex luminance to set the invert color 
 function getLuminance(hexCode) {
   // Convert the color to its RGB components
-  const r = parseInt(hexCode.slice(1, 3), 16) / 255;
-  const g = parseInt(hexCode.slice(3, 5), 16) / 255;
-  const b = parseInt(hexCode.slice(5, 7), 16) / 255;
+  const r = parseInt(hexCode.slice(0,2), 16) / 255;
+  const g = parseInt(hexCode.slice(2,4), 16) / 255;
+  const b = parseInt(hexCode.slice(4,6), 16) / 255;
 
+  console.log( 'red='+r+' green='+g+' blue='+b);
+  
   // Calculate luminance
-  const luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  const luminance = 0.2126 * Math.pow(r, 2.2) + 0.7152 * Math.pow(g, 2.2) + 0.0722 * Math.pow(b, 2.2);
 
   if (luminance > 0.5) {
     var textcolor = 'dark';
