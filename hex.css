@@ -18,12 +18,12 @@ body {
 }
 
 body[text-color=dark] {
-    --textcolor: color-mix(in srgb, var(--cheater) 50%, black);
+    --textcolor: color-mix(in srgb, var(--cheater) 70%, black);
     color: var(--textcolor);
 }
 
 body[text-color=light] {
-    --textcolor: color-mix(in srgb, var(--cheater) 50%, white);
+    --textcolor: color-mix(in srgb, var(--cheater) 70%, white);
     color: var(--textcolor);
 }
 
@@ -61,7 +61,7 @@ li.selected {
     filter: invert(1);
 }
 
-li:is(:hover, :focus) {
-    outline: 2px solid;
-    outline-offset: -2px;
+li:is(:hover, :focus-visible) {
+    outline: 3px solid;
+    outline-offset: -3px;
 }
