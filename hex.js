@@ -7,6 +7,29 @@ const underBody = document.querySelector('body');
 // Insert the <style> element below the footer
 underBody.parentNode.insertBefore(styleElement, underBody.nextSibling);
 
+// Get the random hex luminance to set the invert color 
+function getLuminance(hexCode) {
+  // Convert the color to its RGB components
+  const r = parseInt(hexCode.slice(1, 3), 16) / 255;
+  const g = parseInt(hexCode.slice(3, 5), 16) / 255;
+  const b = parseInt(hexCode.slice(5, 7), 16) / 255;
+
+  // Calculate luminance
+  const luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+
+  if (luminance > 0.5) {
+    var textcolor = 'dark';
+    console.log("Color is light");
+  } else {
+    var textcolor = 'light';
+    console.log("Color is dark");
+  }
+  
+  underBody.setAttribute('text-color', textcolor);
+
+  return luminance;
+}
+
 // Calc the new hex code, drop it in the background
 function updateSecretColor() {
   // Get the selected characters from each ul group
@@ -54,6 +77,9 @@ function updateSecretColor() {
           --hex5: #${styles.hex5};
           --hex6: #${styles.hex6};
         }`;
+
+  // grab that luminance
+  const luminance = getLuminance(hexCode);
   
 }
 
