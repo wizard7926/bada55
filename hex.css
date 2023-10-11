@@ -57,7 +57,7 @@ li {
     user-select: none;
 }
 
-li.selected {
+[text-color=dark] li.selected {
     color: var(--cheater);
 }
 
