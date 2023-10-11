@@ -1,7 +1,11 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
+    <meta for="charset" charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=1" />
     <meta name="theme-color" content="#bada55">
     <title>Project BADA55</title>
+    <link rel="stylesheet" href="hex.css">
     <style type="text/css">
       :root {
           overflow: hidden;
@@ -15,7 +19,8 @@
           place-items: center;
           width: 100vw;
           background-color: var(--secret);
-          font-family: monospace;
+          font-family: system-ui;
+          font-weight: 700;
           font-size: 5rem;
           transition: all 500ms ease;
       }
@@ -40,7 +45,9 @@
           list-style: none;
           background: #fff;
           cursor: pointer;
-          padding: 0 0.45em;
+          width: calc(90vw / 6);
+          max-width: 1.5em;
+          text-align: center;
           font-size: 0.75em;
           transition: all 500ms ease;
           user-select: none;
