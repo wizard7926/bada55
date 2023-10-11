@@ -19,13 +19,12 @@ function getLuminance(hexCode) {
 
   if (luminance > 0.5) {
     var textcolor = 'dark';
-    console.log("Color is light");
   } else {
     var textcolor = 'light';
-    console.log("Color is dark");
   }
   
   document.querySelector('body').setAttribute('text-color', textcolor);
+  document.querySelector('body').setAttribute('luminance', luminance);
 
   return luminance;
 }
