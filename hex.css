@@ -39,7 +39,7 @@ ul {
     height: 1em;
     font-size: 1em;
     line-height: 1em;
-    transition: all 200ms ease;
+    transition: all 100ms ease;
 }
 
 li {
@@ -50,7 +50,7 @@ li {
     max-width: 1.5em;
     text-align: center;
     font-size: 0.75em;
-    transition: all 500ms ease;
+    transition: background 500ms ease;
     user-select: none;
 }
 
