@@ -18,17 +18,20 @@ body {
 }
 
 body[text-color=dark] {
-    color: rgba(0,0,0,0.25);
+    --textcolor: color-mix(in srgb, var(--cheater) 50%, black);
+    color: var(--textcolor);
 }
 
 body[text-color=light] {
-    color: rgba(255,255,255,0.25);
+    --textcolor: color-mix(in srgb, var(--cheater) 50%, white);
+    color: var(--textcolor);
 }
 
 section {
     display: flex;
     gap: 1px;
     height: 1em;
+    background: var(--textcolor);
 }
 
 ul {
@@ -54,10 +57,11 @@ li {
 }
 
 li.selected {
-    background: #fff;
     color: #000;
+    filter: invert(1);
 }
 
 li:is(:hover, :focus) {
-    filter: invert(1);
+    outline: 2px solid;
+    outline-offset: -2px;
 }
