@@ -13,7 +13,7 @@ body {
     background: var(--cheater);
     font-family: system-ui;
     font-weight: 700;
-    font-size: clamp(1rem, 12vw, 5rem);
+    font-size: clamp(1rem, 10vw, 5rem);
     transition: background 500ms ease;
 }
 
@@ -31,7 +31,7 @@ section {
     display: flex;
     gap: 1px;
     height: 1em;
-    background: var(--textcolor);
+    background: #fff;
 }
 
 ul {
@@ -57,11 +57,9 @@ li {
 }
 
 li.selected {
-    color: #000;
-    filter: invert(1);
 }
 
 li:is(:hover, :focus-visible) {
-    outline: 3px solid;
-    outline-offset: -3px;
+    background: var(--textcolor);
+    color: var(--cheater);
 }
