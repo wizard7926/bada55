@@ -255,6 +255,6 @@ uls.forEach((ul) => {
         }`;
 
         // grab that luminance
-        const luminance = getLuminance(hexCode);
+        const luminance = getLuminance(randomHex);
     });
 });
