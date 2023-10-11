@@ -46,8 +46,7 @@ function updateSecretColor() {
   // Convert selected characters into a hex code
   const hexCode = selectedChars.join('');
 
-  // Update the --secret CSS variable
-  // document.documentElement.style.setProperty('--secret', `#${hexCode}`);
+  // Update the --cheater CSS variable
   // Split the hex code into 6 variables
         const hex1 = hexCode[0];
         const hex2 = hexCode[1];
@@ -67,9 +66,9 @@ function updateSecretColor() {
           hex6,
         };
 
-        // Update the --secret CSS variable
+        // Update the --cheater CSS variable
         styleElement.innerHTML = `:root {
-          --secret: #${styles.hexCode};
+          --cheater: #${styles.hexCode};
           --hex1: #${styles.hex1};
           --hex2: #${styles.hex2};
           --hex3: #${styles.hex3};
@@ -207,7 +206,7 @@ uls.forEach((ul) => {
                     
           nearestLi.classList.add("selected");
                     
-          // Call the function to update the --secret variable
+          // Call the function to update the --cheater variable
           updateSecretColor();
       }
       
@@ -244,10 +243,9 @@ uls.forEach((ul) => {
           hex6,
         };
 
-        // Update the --secret CSS variable
-        //document.documentElement.style.setProperty('--secret', `#${randomHex}`);
+        // Update the --cheater CSS variable
         styleElement.innerHTML = `:root {
-          --secret: #${styles.randomHex};
+          --cheater: #${styles.randomHex};
           --hex1: #${styles.hex1};
           --hex2: #${styles.hex2};
           --hex3: #${styles.hex3};
