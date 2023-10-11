@@ -25,7 +25,7 @@ function getLuminance(hexCode) {
     console.log("Color is dark");
   }
   
-  underBody.setAttribute('text-color', textcolor);
+  document.querySelector('body').setAttribute('text-color', textcolor);
 
   return luminance;
 }
@@ -254,5 +254,7 @@ uls.forEach((ul) => {
           --hex6: #${styles.hex6};
         }`;
 
+        // grab that luminance
+        const luminance = getLuminance(hexCode);
     });
 });
