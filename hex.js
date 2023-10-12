@@ -37,8 +37,8 @@ function getLuminance(hexCode) {
 
 // Get a new rando hex code
 function randomHexColor() {
-  const previousHex = randomHex;
-  document.querySelector('.BADA55').innerHTML = randomHex;
+  // const previousHex = randomHex;
+  // document.querySelector('.BADA55').innerHTML = randomHex;
   
   // Generate a random hex code
   const characters = '0123456789ABCDEF';
