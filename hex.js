@@ -31,6 +31,45 @@ function getLuminance(hexCode) {
   return luminance;
 }
 
+// Get a new rando hex code
+function randomHexColor() {
+        // Generate a random hex code
+        const randomHex = Math.floor(Math.random() * 16777215).toString(16);
+
+        // Split the hex code into 6 variables
+        const hex1 = randomHex[0];
+        const hex2 = randomHex[1];
+        const hex3 = randomHex[2];
+        const hex4 = randomHex[3];
+        const hex5 = randomHex[4];
+        const hex6 = randomHex[5];
+
+        // Create an object to hold all the values
+        const styles = {
+          randomHex,
+          hex1,
+          hex2,
+          hex3,
+          hex4,
+          hex5,
+          hex6,
+        };
+
+        // Update the --cheater CSS variable
+        styleElement.innerHTML = `:root {
+          --cheater: #${styles.randomHex};
+          --hex1: #${styles.hex1};
+          --hex2: #${styles.hex2};
+          --hex3: #${styles.hex3};
+          --hex4: #${styles.hex4};
+          --hex5: #${styles.hex5};
+          --hex6: #${styles.hex6};
+        }`;
+
+        // grab that luminance
+        const luminance = getLuminance(randomHex);
+});
+
 // Calc the new hex code, drop it in the background
 function updateSecretColor() {
   // Get the selected characters from each ul group
