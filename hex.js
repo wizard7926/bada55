@@ -33,41 +33,56 @@ function getLuminance(hexCode) {
 
 // Get a new rando hex code
 function randomHexColor() {
-        // Generate a random hex code
-        const randomHex = Math.floor(Math.random() * 16777215).toString(16);
+  // Generate a random hex code
+  const randomHex = Math.floor(Math.random() * 16777215).toString(16);
 
-        // Split the hex code into 6 variables
-        const hex1 = randomHex[0];
-        const hex2 = randomHex[1];
-        const hex3 = randomHex[2];
-        const hex4 = randomHex[3];
-        const hex5 = randomHex[4];
-        const hex6 = randomHex[5];
+  // Split the hex code into 6 variables
+  const hex1 = randomHex[0];
+  const hex2 = randomHex[1];
+  const hex3 = randomHex[2];
+  const hex4 = randomHex[3];
+  const hex5 = randomHex[4];
+  const hex6 = randomHex[5];
 
-        // Create an object to hold all the values
-        const styles = {
-          randomHex,
-          hex1,
-          hex2,
-          hex3,
-          hex4,
-          hex5,
-          hex6,
-        };
+  // Create an object to hold all the values
+  const styles = {
+    randomHex,
+    hex1,
+    hex2,
+    hex3,
+    hex4,
+    hex5,
+    hex6,
+  };
 
-        // Update the --cheater CSS variable
-        styleElement.innerHTML = `:root {
-          --cheater: #${styles.randomHex};
-          --hex1: #${styles.hex1};
-          --hex2: #${styles.hex2};
-          --hex3: #${styles.hex3};
-          --hex4: #${styles.hex4};
-          --hex5: #${styles.hex5};
-          --hex6: #${styles.hex6};
-        }`;
+  // Update the --cheater CSS variable
+  styleElement.innerHTML = `:root {
+    --cheater: #${styles.randomHex};
+    --hex1: #${styles.hex1};
+    --hex2: #${styles.hex2};
+    --hex3: #${styles.hex3};
+    --hex4: #${styles.hex4};
+    --hex5: #${styles.hex5};
+    --hex6: #${styles.hex6};
+  }`;
 
-        // grab that luminance
-        const luminance = getLuminance(randomHex);
+  // grab that luminance
+  const luminance = getLuminance(randomHex);
+
+  // update the columns to reflect new values
+  const columns = document.querySelectorAll("ul");
+
+  for (let i = 0; i < randomHex.length && i < columns.length; i++) {
+    const column = columns[i];
+    const hexChar = randomHex.charAt(i);
+
+    for (const li of column.querySelectorAll("li")) {
+      if (li.getAttribute("data-value") === hexChar) {
+        li.click(); // Trigger a "click" event on the matching li
+        break; // Stop searching once a match is found
+      }
+    }
+  }
 });
 
 // Apply the newest group of hex values to existing columns
@@ -136,7 +151,6 @@ function updateSecretColor() {
 
   // grab that luminance
   const luminance = getLuminance(hexCode);
-  
 }
 
 
