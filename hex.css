@@ -72,13 +72,12 @@ ul {
 }
 
 li {
-    tabindex: 1;
     list-style: none;
     cursor: pointer;
-    width: calc(87vw / 6);
-    max-width: 1.5em;
+    width: calc(80vw / 6);
+    max-width: 1.125em;
     text-align: center;
-    font-size: 0.75em;
+    font-size: clamp(2px, 13vmin, 0.9em);
     transition: background 500ms ease;
     user-select: none;
 }
