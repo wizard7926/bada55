@@ -24,7 +24,7 @@ body:before, body:after {
     z-index: 999;
     position: relative;
     flex-grow: 1;
-    background: linear-gradient(to bottom, var(--cheater) 50%, transparent);
+    background: linear-gradient(to top, transparent, var(--cheater) 3em);
     pointer-events: none;
 }
 
