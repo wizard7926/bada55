@@ -11,7 +11,7 @@ body {
     display: flex;
     flex-direction: column;
     background: var(--cheater);
-    font-family: system-ui;
+    font-family: Inter;
     font-weight: 700;
     font-size: clamp(1rem, 15vw, 5rem);
     transition: background 500ms ease;
