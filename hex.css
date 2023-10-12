@@ -10,7 +10,8 @@ header {
     top: 0;
     left: 0;
     z-index: 99999;
-    padding-left: 0.5em;
+    padding-left: 0.75em;
+    padding-right: 0.5em;
     font-size: 1.5rem;
     box-sizing: border-box;
     width: 100%;
@@ -19,8 +20,8 @@ header {
     align-items: center;
 }
 
-.rando {
-    padding: 0.5em;
+.buttons button {
+    padding: 0.75em 0.25em;
     appearance: none;
     border: none;
     background: none;
@@ -31,7 +32,7 @@ header {
     margin: 0;
 }
 
-.rando span {
+.buttons button span {
     font-size: inherit;
     display: block;
 }
