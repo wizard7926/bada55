@@ -1,4 +1,6 @@
 :root {
+    font-family: Inter;
+    font-weight: 700;
     overflow: hidden;
     height: 100vh;
 }
@@ -11,8 +13,6 @@ body {
     display: flex;
     flex-direction: column;
     background: var(--cheater);
-    font-family: Inter;
-    font-weight: 700;
     font-size: clamp(1rem, 15vw, 5rem);
     transition: background 500ms ease;
 }
