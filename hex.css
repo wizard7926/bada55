@@ -24,7 +24,8 @@ body:before, body:after {
     z-index: 999;
     position: relative;
     flex-grow: 1;
-    background: linear-gradient(to bottom, var(--cheater) 60%, transparent);
+    background: linear-gradient(to bottom, var(--cheater) 50%, transparent);
+    pointer-events: none;
 }
 
 body:after {
@@ -45,18 +46,18 @@ section {
     display: flex;
     gap: 1px;
     height: 1em;
-  margin: 2em auto;
-  border-block: 1px solid;
-  width: 100vw;
-  justify-content: center;
+    margin: 0em auto;
+    border-block: 1px solid;
+    width: 100vw;
+    justify-content: center;
 }
 
 [text-color=dark] li.selected {
-  color: rgba(0,0,0,0.75);
+    color: rgba(0,0,0,0.75);
 }
 
 [text-color=light] li.selected {
-  color: rgba(255,255,255,0.75);
+    color: rgba(255,255,255,0.75);
 }
 
 ul {
@@ -86,6 +87,6 @@ li.selected {
 }
 
 li:is(:hovver, :focus-visible) {
-  background: var(--textcolor);
-  color: var(--cheater);
+    background: var(--textcolor);
+    color: var(--cheater);
 }
