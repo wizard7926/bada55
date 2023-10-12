@@ -7,6 +7,8 @@ const underBody = document.querySelector('body');
 // Insert the <style> element below the footer
 underBody.parentNode.insertBefore(styleElement, underBody.nextSibling);
 
+
+
 // Get the random hex luminance to set the invert color 
 function getLuminance(hexCode) {
   // Convert the color to its RGB components
@@ -14,7 +16,7 @@ function getLuminance(hexCode) {
   const g = parseInt(hexCode.slice(2,4), 16) / 255;
   const b = parseInt(hexCode.slice(4,6), 16) / 255;
 
-  console.log( 'red='+r+' green='+g+' blue='+b);
+  //////// console.log( 'red='+r+' green='+g+' blue='+b);
   
   // Calculate luminance
   const luminance = 0.2126 * Math.pow(r, 2.2) + 0.7152 * Math.pow(g, 2.2) + 0.0722 * Math.pow(b, 2.2);
@@ -31,10 +33,16 @@ function getLuminance(hexCode) {
   return luminance;
 }
 
+
+
 // Get a new rando hex code
 function randomHexColor() {
   // Generate a random hex code
-  const randomHex = Math.floor(Math.random() * 16777215).toString(16);
+  const characters = '0123456789ABCDEF';
+  let randomHex = '';
+  for (let i = 0; i < 6; i++) {
+    randomHex += characters[Math.floor(Math.random() * characters.length)];
+  }
 
   // Split the hex code into 6 variables
   const hex1 = randomHex[0];
@@ -85,6 +93,8 @@ function randomHexColor() {
   }
 }
 
+
+
 // Apply the newest group of hex values to existing columns
 function selectHexValues(hexCode) {
   const columns = document.querySelectorAll("ul");
@@ -101,6 +111,8 @@ function selectHexValues(hexCode) {
     }
   }
 }
+
+
 
 // Calc the new hex code, drop it in the background
 function updateSecretColor() {
@@ -152,6 +164,7 @@ function updateSecretColor() {
   // grab that luminance
   const luminance = getLuminance(hexCode);
 }
+
 
 
 //const randoButton = document.querySelectorAll("#rando");
@@ -278,7 +291,6 @@ uls.forEach((ul) => {
 
           // Simulate a click on the nearest li
           nearestLi.click();
-                    
           nearestLi.classList.add("selected");
                     
           // Call the function to update the --cheater variable
@@ -296,40 +308,6 @@ uls.forEach((ul) => {
             }
         });
       
-        // Generate a random hex code
-        const randomHex = Math.floor(Math.random() * 16777215).toString(16);
-
-        // Split the hex code into 6 variables
-        const hex1 = randomHex[0];
-        const hex2 = randomHex[1];
-        const hex3 = randomHex[2];
-        const hex4 = randomHex[3];
-        const hex5 = randomHex[4];
-        const hex6 = randomHex[5];
-
-        // Create an object to hold all the values
-        const styles = {
-          randomHex,
-          hex1,
-          hex2,
-          hex3,
-          hex4,
-          hex5,
-          hex6,
-        };
-
-        // Update the --cheater CSS variable
-        styleElement.innerHTML = `:root {
-          --cheater: #${styles.randomHex};
-          --hex1: #${styles.hex1};
-          --hex2: #${styles.hex2};
-          --hex3: #${styles.hex3};
-          --hex4: #${styles.hex4};
-          --hex5: #${styles.hex5};
-          --hex6: #${styles.hex6};
-        }`;
-
-        // grab that luminance
-        const luminance = getLuminance(randomHex);
+        randomHexColor();
     });
 });
