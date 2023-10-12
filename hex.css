@@ -45,7 +45,6 @@ section {
     display: flex;
     gap: 1px;
     height: 1em;
-  padding: 0 0.125em;
   margin: 2em auto;
   border-block: 1px solid;
   width: 100vw;
@@ -86,7 +85,7 @@ li {
 li.selected {
 }
 
-li:is(:hover, :focus-visible) {
-    background: var(--textcolor);
+li:is(:hovver, :focus-visible) {
+  background: var(--textcolor);
   color: var(--cheater);
 }
