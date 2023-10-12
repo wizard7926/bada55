@@ -83,7 +83,7 @@ function randomHexColor() {
       }
     }
   }
-});
+}
 
 // Apply the newest group of hex values to existing columns
 function selectHexValues(hexCode) {
@@ -100,7 +100,7 @@ function selectHexValues(hexCode) {
       }
     }
   }
-});
+}
 
 // Calc the new hex code, drop it in the background
 function updateSecretColor() {
