@@ -50,7 +50,7 @@ section {
     border-block: 1px solid;
     width: 100vw;
     justify-content: center;
-    padding-top: 0.5px;
+    padding-top: 1px;
 }
 
 [text-color=dark] li.selected {
