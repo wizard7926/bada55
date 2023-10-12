@@ -5,6 +5,37 @@
     height: 100vh;
 }
 
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    padding-left: 0.5em;
+    font-size: 1.5rem;
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rando {
+    padding: 0.5em;
+    appearance: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: inherit;
+    line-height: inherit;
+    font-size: inherit;
+    margin: 0;
+}
+
+.rando span {
+    font-size: inherit;
+    display: block;
+}
+
 body {
     overflow: hidden;
     height: 100vh;
@@ -94,11 +125,4 @@ ul:is(:hover,:focus-within) {
 li:not(.selected):is(:hover, :focus-visible) {
     background: var(--textcolor);
     color: var(--cheater);
-}
-
-.rando {
-    position: fixed;
-    top: 0;
-    right: 0;
-    padding: 0.5rem;
 }
