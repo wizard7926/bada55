@@ -22,12 +22,18 @@
   </head>
 
   <header>
-    <span>#<span class="BADA55">BADA55</span></span>
-    <button id="rando" class="rando" onclick="randomHexColor();">
-      <span class="material-symbols-outlined">
-        refresh
-      </span>
-    </button>
+    <div>#<span class="BADA55">BADA55</span></div>
+    <div class="buttons">
+      <button id="rando" class="copy" onclick="copyHexColor();">
+        <span class="material-symbols-outlined">content_copy</span>
+      </button>
+      <button id="rando" class="undo" onclick="undoHexColor();">
+        <span class="material-symbols-outlined">undo</span>
+      </button>
+      <button id="rando" class="rando" onclick="randomHexColor();">
+        <span class="material-symbols-outlined">refresh</span>
+      </button>
+    </div>
   </header>
   
   <body>
