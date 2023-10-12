@@ -154,6 +154,10 @@ function updateSecretColor() {
 }
 
 
+//const randoButton = document.querySelectorAll("#rando");
+//randoButton.addEventListener("click", randomHexColor());
+
+
 const uls = document.querySelectorAll("ul");
 
 uls.forEach((ul) => {
