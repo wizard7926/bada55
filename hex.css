@@ -8,8 +8,8 @@ body {
     height: 100vh;
     width: 100vw;
     margin: 0;
-    display: grid;
-    place-items: center;
+    display: flex;
+    flex-direction: column;
     background: var(--cheater);
     font-family: system-ui;
     font-weight: 700;
@@ -17,8 +17,22 @@ body {
     transition: background 500ms ease;
 }
 
+body:before, body:after {
+    display: block;
+    content: '';
+    width: 100%;
+    z-index: 999;
+    position: relative;
+    flex-grow: 1;
+    background: linear-gradient(to bottom, var(--cheater) 60%, transparent);
+}
+
+body:after {
+    transform: rotate(180deg);
+}
+
 body[text-color=dark] {
-    --textcolor: color-mix(in srgb, var(--cheater) 70%, black);
+    --textcolor: color-mix(in srgb, var(--cheater) 80%, black);
     color: var(--textcolor);
 }
 
@@ -29,10 +43,21 @@ body[text-color=light] {
 
 section {
     display: flex;
-    gap: 0px;
+    gap: 1px;
     height: 1em;
-    background: #fff;
-    padding: 0 0.125em;
+  padding: 0 0.125em;
+  margin: 2em auto;
+  border-block: 1px solid;
+  width: 100vw;
+  justify-content: center;
+}
+
+[text-color=dark] li.selected {
+  color: rgba(0,0,0,0.75);
+}
+
+[text-color=light] li.selected {
+  color: rgba(255,255,255,0.75);
 }
 
 ul {
@@ -47,6 +72,7 @@ ul {
 }
 
 li {
+    tabindex: 1;
     list-style: none;
     cursor: pointer;
     width: calc(87vw / 6);
@@ -57,11 +83,10 @@ li {
     user-select: none;
 }
 
-[text-color=light] li.selected {
-    color: var(--cheater);
+li.selected {
 }
 
 li:is(:hover, :focus-visible) {
     background: var(--textcolor);
-    color: var(--cheater);
+  color: var(--cheater);
 }
