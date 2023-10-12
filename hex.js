@@ -70,6 +70,23 @@ function randomHexColor() {
         const luminance = getLuminance(randomHex);
 });
 
+// Apply the newest group of hex values to existing columns
+function selectHexValues(hexCode) {
+  const columns = document.querySelectorAll("ul");
+
+  for (let i = 0; i < hexCode.length && i < columns.length; i++) {
+    const column = columns[i];
+    const hexChar = hexCode.charAt(i);
+
+    for (const li of column.querySelectorAll("li")) {
+      if (li.getAttribute("data-value") === hexChar) {
+        li.click(); // Trigger a "click" event on the matching li
+        break; // Stop searching once a match is found
+      }
+    }
+  }
+});
+
 // Calc the new hex code, drop it in the background
 function updateSecretColor() {
   // Get the selected characters from each ul group
