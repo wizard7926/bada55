@@ -59,12 +59,60 @@ function getLuminance(hexCode) {
 //   document.querySelector('#next').removeAttribute('data-value');
 // }
 
-// show manual textbox
+// show/hide manual edit textbox
 function manualEdit() {
-  const editButton = document.getElementById('manualEdit');
-  editButton.classList.toggle('active');
-  editButton.value = editButton.getAttribute('data-value');
+  const editButton = document.getElementById('edit');
+  const editForm = document.getElementById('editForm');
+  const editField = document.getElementById('editField');
+  const copyButton = document.getElementById('copy');
+
+  if (editForm.classList.contains('active')) {
+    editField.blur(); // Trigger a blur event to save the value
+  } else {
+    // Add the "active" class
+    editForm.classList.add('active');
+    editField.focus();
+
+    // Listen for the input's input event
+    editField.addEventListener('input', function() {
+      editField.value = editField.value.toUpperCase();
+      
+      // Update the data-value with the input value
+      copyButton.setAttribute('data-value', editField.value);
+      selectHexValues(editField.value);
+    });
+
+    // Listen for the input's blur event
+    editField.addEventListener('blur', function() {
+      setTimeout(function() {
+        editForm.classList.remove('active');
+      }, 100);
+      
+      // Update the data-value with the input value
+      copyButton.setAttribute('data-value', editField.value);
+      selectHexValues(editField.value);
+    });
+
+    // Listen for the Enter key
+    editField.addEventListener('keyup', function(event) {
+      if (event.key === 'Enter') {
+        editField.blur(); // Trigger a blur event to save the value
+      }
+    });
+  }
 }
+
+
+
+function submitManualEdit() {
+  const editField = document.getElementById('editField');
+  const copyButton = document.getElementById('copy');
+
+  // Update the data-value with the input value
+  copyButton.setAttribute('data-value', editField.value);
+  editField.blur();
+}
+
 
 // copy the current hex code
 function copyHexColor() {
@@ -165,9 +213,9 @@ function randomHexColor() {
   }
   
   document.querySelector('#copy').setAttribute('data-value', randomHex);
-  document.querySelector('#manualEdit').setAttribute('data-value', randomHex);
+  document.querySelector('#editField').setAttribute('data-value', randomHex);
+  document.querySelector('#editField').setAttribute('value', randomHex);
 }
-
 
 
 // Apply the newest group of hex values to existing columns
@@ -238,7 +286,9 @@ function updateSecretColor() {
 
   // grab that luminance
   const luminance = getLuminance(hexCode);
-  document.querySelector('#manualEdit').setAttribute('data-value', hexCode);
+  document.querySelector('#editField').setAttribute('data-value', hexCode);
+  document.querySelector('#editField').setAttribute('value', hexCode);
+  document.querySelector('.BADA55').innerHTML = hexCode;
 }
 
 
@@ -281,109 +331,115 @@ uls.forEach((ul) => {
             updateSecretColor();
         });
 
-        item.addEventListener("touchstart", (e) => {
-            const touchStartY = e.touches[0].clientY;
-            const parentUl = item.closest("ul");
-            const maxLi = parentUl.querySelectorAll("li").length - 1;
-            const initialMargin = parseFloat(getComputedStyle(parentUl).marginTop);
+//         item.addEventListener("touchstart", (e) => {
+//             const touchStartY = e.touches[0].clientY;
+//             const parentUl = item.closest("ul");
+//             const maxLi = parentUl.querySelectorAll("li").length - 1;
+//             const initialMargin = parseFloat(getComputedStyle(parentUl).marginTop);
 
-            item.addEventListener("touchmove", (e) => {
-                const touchCurrentY = e.touches[0].clientY;
-                const deltaY = touchStartY - touchCurrentY;
-                parentUl.style.marginTop = (initialMargin - deltaY) + 'px';
-            });
+//             item.addEventListener("touchmove", (e) => {
+//                 const touchCurrentY = e.touches[0].clientY;
+//                 const deltaY = touchStartY - touchCurrentY;
+//                 parentUl.style.marginTop = (initialMargin - deltaY) + 'px';
+//             });
 
-            item.addEventListener("touchend", () => {
-                // Calculate which item is currently in the center
-                var centerIndex = Math.round(-parseFloat(getComputedStyle(parentUl).marginTop) / parseFloat(getComputedStyle(item).height));
+//             item.addEventListener("touchend", () => {
+//                 // Calculate which item is currently in the center
+//                 var centerIndex = Math.round(-parseFloat(getComputedStyle(parentUl).marginTop) / parseFloat(getComputedStyle(item).height));
 
-                // Fix the centerIndex if outside the bounds
-                if (centerIndex < 0) {
-                    centerIndex = 0;
-                } else if (centerIndex > maxLi) {
-                    centerIndex = maxLi;
-                }
+//                 // Fix the centerIndex if outside the bounds
+//                 if (centerIndex < 0) {
+//                     centerIndex = 0;
+//                 } else if (centerIndex > maxLi) {
+//                     centerIndex = maxLi;
+//                 }
 
-                parentUl.style.marginTop = -centerIndex * parseFloat(getComputedStyle(item).height) + 'px';
+//                 parentUl.style.marginTop = -centerIndex * parseFloat(getComputedStyle(item).height) + 'px';
 
-                // Update the selected item
-                const items = parentUl.querySelectorAll("li");
-                items.forEach((item, index) => {
-                    if (index === centerIndex) {
-                        item.classList.add("selected");
-                    } else {
-                        item.classList.remove("selected");
-                    }
-                });
+//                 // Update the selected item
+//                 const items = parentUl.querySelectorAll("li");
+//                 items.forEach((item, index) => {
+//                     if (index === centerIndex) {
+//                         item.classList.add("selected");
+//                     } else {
+//                         item.classList.remove("selected");
+//                     }
+//                 });
                         
-                // Call the function to update the --secret variable
-                updateSecretColor();
-            });
-        });
+//                 // Call the function to update the --secret variable
+//                 updateSecretColor();
+//             });
+//         });
 
         // Mouseup event handling for each item
-        const parentUl = item.closest("ul");
-        let isDragging = false;
-        let startX, startY;
-        let initialMargin;
-        const minMargin = -(item.offsetHeight - parseFloat(getComputedStyle(item).height) - parseFloat(getComputedStyle(parentUl).fontSize));
-        console.log(minMargin);
+//         const parentUl = item.closest("ul");
+//         let isDragging = false;
+//         let startX, startY;
+//         let initialMargin;
+//         const minMargin = -(item.offsetHeight - parseFloat(getComputedStyle(item).height) - parseFloat(getComputedStyle(parentUl).fontSize));
+//         console.log(minMargin);
 
-        item.addEventListener("mousedown", (e) => {
-            isDragging = true;
-            startX = e.clientX;
-            startY = e.clientY;
-            initialMargin = parseFloat(getComputedStyle(parentUl).marginTop);
+//         item.addEventListener("mousedown", (e) => {
+//             isDragging = true;
+//             startX = e.clientX;
+//             startY = e.clientY;
+//             initialMargin = parseFloat(getComputedStyle(parentUl).marginTop);
 
-            document.addEventListener("mousemove", handleMouseMove);
-            document.addEventListener("mouseup", handleMouseUp);
-        });
+//             document.addEventListener("mousemove", handleMouseMove);
+//             document.addEventListener("mouseup", handleMouseUp);
+//         });
 
-        function handleMouseMove(e) {
-            if (isDragging) {
-                const deltaY = startY - e.clientY;
-                console.log( 'deltaY=' + deltaY + ' / initialMargin=' + initialMargin + ' / minMargin=' + minMargin );
+//         function handleMouseMove(e) {
+//             if (isDragging) {
+//                 const deltaY = startY - e.clientY;
+//                 console.log( 'deltaY=' + deltaY + ' / initialMargin=' + initialMargin + ' / minMargin=' + minMargin );
               
-                console.log( 'equals=' + Math.min(initialMargin - deltaY, 0) + 'px')
-                parentUl.style.marginTop = Math.min(initialMargin - deltaY, 0) + 'px';
-            }
-        }
+//                 console.log( 'equals=' + Math.min(initialMargin - deltaY, 0) + 'px')
+//                 parentUl.style.marginTop = Math.min(initialMargin - deltaY, 0) + 'px';
+//             }
+//         }
 
-        function handleMouseUp() {
-          isDragging = false;
-          document.removeEventListener("mousemove", handleMouseMove);
-          document.removeEventListener("mouseup", handleMouseUp);
+//         function handleMouseUp() {
+//           isDragging = false;
+//           document.removeEventListener("mousemove", handleMouseMove);
+//           document.removeEventListener("mouseup", handleMouseUp);
 
-          const items = parentUl.querySelectorAll("li");
+//           const items = parentUl.querySelectorAll("li");
 
-          // Find the index of the currently centered li based on the margin-top
-          const currentIndex = Math.round(-parseFloat(getComputedStyle(parentUl).marginTop) / parseFloat(getComputedStyle(items[0]).height));
+//           // Find the index of the currently centered li based on the margin-top
+//           const currentIndex = Math.round(-parseFloat(getComputedStyle(parentUl).marginTop) / parseFloat(getComputedStyle(items[0]).height));
 
-          // Ensure the index stays within bounds
-          const selectedIndex = Math.max(0, Math.min(currentIndex, items.length - 1));
+//           // Ensure the index stays within bounds
+//           const selectedIndex = Math.max(0, Math.min(currentIndex, items.length - 1));
 
-          // Get the li at the selectedIndex
-          const nearestLi = items[selectedIndex];
+//           // Get the li at the selectedIndex
+//           const nearestLi = items[selectedIndex];
 
-          // Simulate a click on the nearest li
-          nearestLi.click();
-          nearestLi.classList.add("selected");
+//           // Simulate a click on the nearest li
+//           nearestLi.click();
+//           nearestLi.classList.add("selected");
                     
-          // Call the function to update the --cheater variable
-          updateSecretColor();
-      }
+//           // Call the function to update the --cheater variable
+//           updateSecretColor();
+//       }
       
       
     });
 
     // Simulate a "click" on the initially selected elements after page load
     window.addEventListener('load', () => {
-        items.forEach((item) => {
-            if (item.classList.contains('selected')) {
-                item.click(); // Trigger a "click" event
-            }
-        });
+        // items.forEach((item) => {
+        //     if (item.classList.contains('selected')) {
+        //         item.click(); // Trigger a "click" event
+        //     }
+        // });
       
-        randomHexColor();
+        selectHexValues('BADA55');
+      
+        //randomHexColor();
+      
+        // setTimeout(() => {
+        //   randomHexColor();
+        // }, 3000);
     });
 });
