@@ -28,12 +28,16 @@ header {
     align-items: center;
 }
 
+.BADA55 {
+    margin-right: 0.2em;
+}
+
 .BADA55:before {
     content: '#';
 }
 
 .buttons button {
-    padding: 0.75em 0.25em;
+    padding: 0.75em 0.2em;
     appearance: none;
     border: none;
     background: none;
@@ -138,15 +142,14 @@ section.copied {
   box-shadow: 0 0 1rem var(--textcolor);
 }
 
-#manualEdit {
+#editForm {
     position: absolute;
     left: 0;
     top: 50%;
     transform: translateY(-50%);
     width: 100%;
     height: 100%;
-    background: var(--textcolor-bright);
-    border: 0;
+    border: inherit;
     text-align: center;
     color: var(--cheater);
     font-family: Inter;
@@ -158,9 +161,43 @@ section.copied {
     transition: all 200ms ease;
 }
 
-#manualEdit.active {
+#editForm.active {
     z-index: 999999;
     opacity: 1;
+}
+
+#editField {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: var(--textcolor);
+    border: 0;
+    text-align: center;
+    color: var(--textcolor-bright);
+    font-family: Inter;
+    font-size: inherit;
+    font-weight: inherit;
+    transition: all 200ms ease;
+    text-transform: uppercase;
+    box-sizing: border-box;
+}
+
+#editField:focus-visible {
+    outline: 2px solid;
+    outline-offset: 0px;
+}
+
+#editSubmit {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    border: 0;
+    margin: 0;
+    padding: 0 1em;
+    background: none;
+    font-size: 0.25em;
+    color: var(--cheater);
 }
 
 li.selected {
@@ -175,7 +212,7 @@ ul {
     height: 1em;
     font-size: 1em;
     line-height: 1em;
-    transition: all 100ms ease;
+    transition: all 500ms ease;
 }
 
 li {
@@ -198,8 +235,6 @@ ul:is(:hover,:focus-within) {
 }
 
 li:not(.selected):is(:hover, :focus-visible) {
-/*     background: var(--textcolor); */
-    color: var(--textcolor-bright);
-    outline: 3px solid var(--textcolor-bright);
-    outline-offset: -3px;
+    background: var(--textcolor);
+    color: var(--cheater);
 }
