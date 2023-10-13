@@ -440,8 +440,8 @@ uls.forEach((ul) => {
       
         //randomHexColor();
       
-        // setTimeout(() => {
-        //   randomHexColor();
-        // }, 3000);
+        setTimeout(() => {
+          randomHexColor();
+        }, 2000);
     });
 });
