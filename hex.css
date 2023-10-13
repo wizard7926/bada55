@@ -12,12 +12,24 @@ header {
     z-index: 99999;
     padding-left: 0.75em;
     padding-right: 0.5em;
+    padding-bottom: 2em;
     font-size: 1.5rem;
     box-sizing: border-box;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background: linear-gradient(to bottom, var(--cheater) 50%, transparent 100%);
+    color: var(--textcolor-bright);
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+}
+
+.BADA55:before {
+    content: '#';
 }
 
 .buttons button {
@@ -30,6 +42,20 @@ header {
     line-height: inherit;
     font-size: inherit;
     margin: 0;
+}
+
+.next:not([data-value]),
+.prev:not([data-value]) {
+    display: none;
+}
+
+#copy span {
+    transition: opacity 200ms ease-in;
+}
+
+#copy .fade {
+    opacity: 0;
+    transition: opacity 1000ms ease-out;
 }
 
 .buttons button span {
@@ -66,12 +92,30 @@ body:after {
 
 body[text-color=dark] {
     --textcolor: color-mix(in srgb, var(--cheater) 80%, black);
+    --textcolor-bright: rgba(0,0,0,0.75);
     color: var(--textcolor);
 }
 
 body[text-color=light] {
     --textcolor: color-mix(in srgb, var(--cheater) 70%, white);
+    --textcolor-bright: rgba(255,255,255,0.75);
     color: var(--textcolor);
+}
+
+.modal {
+    position: absolute;
+    top: 7%;
+    left: 0;
+    right: 0;
+    display: block;
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 1em;
+    transition: all 500ms ease;
+}
+
+.modal.active {
+    z-index:99999;
 }
 
 section {
@@ -83,14 +127,44 @@ section {
     width: 100vw;
     justify-content: center;
     padding-top: 1px;
+    transition: background 400ms ease-out;
+    position: relative;
 }
 
-[text-color=dark] li.selected {
-    color: rgba(0,0,0,0.75);
+section.copied {
+    background: color-mix(in srgb, var(--cheater) 20%, white);
+    background: var(--textcolor);
+    transition: background 0ms linear;
+  box-shadow: 0 0 1rem var(--textcolor);
 }
 
-[text-color=light] li.selected {
-    color: rgba(255,255,255,0.75);
+#manualEdit {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    height: 100%;
+    background: var(--textcolor-bright);
+    border: 0;
+    text-align: center;
+    color: var(--cheater);
+    font-family: Inter;
+    font-size: clamp(2px, 13vmin, 0.9em);
+    font-weight: 700;
+    backdrop-filter: blur(1rem);
+    z-index: -999;
+    opacity: 0;
+    transition: all 200ms ease;
+}
+
+#manualEdit.active {
+    z-index: 999999;
+    opacity: 1;
+}
+
+li.selected {
+    color: var(--textcolor-bright);
 }
 
 ul {
