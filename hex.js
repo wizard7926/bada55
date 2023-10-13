@@ -287,7 +287,7 @@ function updateSecretColor() {
   // grab that luminance
   const luminance = getLuminance(hexCode);
   
-  document.querySelector('#copy').setAttribute('data-value', randomHex);
+  document.querySelector('#copy').setAttribute('data-value', hexCode);
   document.querySelector('#editField').setAttribute('data-value', hexCode);
   document.querySelector('#editField').setAttribute('value', hexCode);
   document.querySelector('.BADA55').innerHTML = hexCode;
