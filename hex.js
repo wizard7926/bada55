@@ -33,12 +33,81 @@ function getLuminance(hexCode) {
   return luminance;
 }
 
+// function prevHexColor() {
+//   var redoHex = document.querySelector('#copy').getAttribute('data-value');
+//   document.querySelector('#next').setAttribute('data-value', redoHex);
+  
+//   var undoHex = document.querySelector('#prev').getAttribute('data-value');
+//   selectHexValues(undoHex);
+//   updateSecretColor();
+//   document.querySelector('.BADA55').innerHTML = redoHex;
+  
+//   document.querySelector('#copy').setAttribute('data-value', undoHex);
+//   document.querySelector('#prev').removeAttribute('data-value');
+// }
+
+// function nextHexColor() {
+//   var undoHex = document.querySelector('#copy').getAttribute('data-value');
+//   document.querySelector('#prev').setAttribute('data-value', undoHex);
+  
+//   var redoHex = document.querySelector('#next').getAttribute('data-value');
+//   selectHexValues(redoHex);
+//   updateSecretColor();
+//   document.querySelector('.BADA55').innerHTML = undoHex;
+  
+//   document.querySelector('#copy').setAttribute('data-value', redoHex);
+//   document.querySelector('#next').removeAttribute('data-value');
+// }
+
+// show manual textbox
+function manualEdit() {
+  const editButton = document.getElementById('manualEdit');
+  editButton.classList.toggle('active');
+  editButton.value = editButton.getAttribute('data-value');
+}
+
+// copy the current hex code
+function copyHexColor() {
+  // Get the value
+  const copyButton = document.getElementById('copy');
+  var copyHex = copyButton.getAttribute("data-value");
+  const modalElement = document.querySelector('.modal');
+  const sectionElement = document.querySelector('section');
+
+   // Copy the text inside the text field
+  navigator.clipboard.writeText('#'+copyHex);
+
+  
+  // Change the icon to a checkmark
+  const copyIcon = copyButton.querySelector('span');
+  let txt = copyIcon.innerText;
+  copyIcon.innerText = txt == 'content_copy' ? 'check' : 'content_copy';
+  sectionElement.classList.add('copied');
+  
+  setTimeout(() => {
+    sectionElement.classList.remove('copied');
+  }, 100); 
+  
+  setTimeout(() => {
+    copyIcon.classList.add('fade');
+  }, 1000); 
+  
+  // Change it back
+  setTimeout(() => {
+    copyIcon.classList.remove('fade');
+    copyIcon.innerText = 'content_copy';
+  }, 2000); 
+  
+  // Alert the copied text
+  // alert("Copied the text: #"+copyHex);
+}
 
 
 // Get a new rando hex code
 function randomHexColor() {
-  // const previousHex = randomHex;
-  // document.querySelector('.BADA55').innerHTML = randomHex;
+  //var previousHex = document.querySelector('#copy').getAttribute('data-value');
+  //document.querySelector('#prev').setAttribute('data-value', previousHex);
+  //document.querySelector('.BADA55').innerHTML = previousHex;
   
   // Generate a random hex code
   const characters = '0123456789ABCDEF';
@@ -94,6 +163,9 @@ function randomHexColor() {
       }
     }
   }
+  
+  document.querySelector('#copy').setAttribute('data-value', randomHex);
+  document.querySelector('#manualEdit').setAttribute('data-value', randomHex);
 }
 
 
@@ -166,6 +238,7 @@ function updateSecretColor() {
 
   // grab that luminance
   const luminance = getLuminance(hexCode);
+  document.querySelector('#manualEdit').setAttribute('data-value', hexCode);
 }
 
 
