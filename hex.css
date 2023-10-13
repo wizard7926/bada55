@@ -198,6 +198,8 @@ ul:is(:hover,:focus-within) {
 }
 
 li:not(.selected):is(:hover, :focus-visible) {
-    background: var(--textcolor);
-    color: var(--cheater);
+/*     background: var(--textcolor); */
+    color: var(--textcolor-bright);
+    outline: 3px solid var(--textcolor-bright);
+    outline-offset: -3px;
 }
