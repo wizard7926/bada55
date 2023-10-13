@@ -23,6 +23,9 @@
   <header>
     <div class="buttons">
       <span class="BADA55">BADA55</span>
+      <button id="copy" class="copy" data-value="" onclick="copyHexColor();">
+        <span class="material-symbols-outlined">content_copy</span>
+      </button>
       <button id="edit" class="edit" onclick="manualEdit();">
         <span class="material-symbols-outlined">edit</span>
       </button>
@@ -34,9 +37,6 @@
       </button-->
     </div>
     <div class="buttons">
-      <button id="copy" class="copy" data-value="" onclick="copyHexColor();">
-        <span class="material-symbols-outlined">content_copy</span>
-      </button>
       <button id="rando" class="rando" onclick="randomHexColor();">
         <span class="material-symbols-outlined">refresh</span>
       </button>
@@ -45,7 +45,13 @@
   
   <body>
     <section>
-      <input id="manualEdit" type="text"></input>
+      <form id="editForm" onsubmit="submitManualEdit(); return false;">
+        <input id="editField" type="text" maxlength="6">
+<!--         <button id="editSubmit" type="submit">
+          <span class="material-symbols-outlined">arrow_forward</span>
+        </button> -->
+      </form>
+
       <ul id="r1">
           <li data-value="F" tabindex="1">F</li>
           <li data-value="E" tabindex="1">E</li>
