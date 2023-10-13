@@ -54,6 +54,7 @@ header {
 }
 
 #copy span {
+    font-size: 0.9em;
     transition: opacity 200ms ease-in;
 }
 
