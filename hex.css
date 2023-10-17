@@ -35,7 +35,7 @@ header {
     align-items: center;
     width: 100%;
     justify-content: center;
-    gap: 7em;
+    gap: clamp(10vw,10vw,30vw);
 }
 
 .BADA55 {
