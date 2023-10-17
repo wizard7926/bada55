@@ -23,9 +23,19 @@ header {
     color: var(--textcolor-bright);
 }
 
+.top-logo {
+    position: fixed;
+    top: 0.5em;
+    width: 100%;
+    text-align: center;
+}
+
 .buttons {
     display: flex;
     align-items: center;
+    width: 100%;
+    justify-content: center;
+    gap: 7em;
 }
 
 .BADA55 {
